@@ -26,3 +26,6 @@ If you'd like to compile the LaTeX source file into a PDF:
 1. Clone this repository:
    ```bash
    git clone https://github.com/gmitaros/giorgos-mytaros-resume.git
+   ```
+2. Make sure you have a LaTeX editor installed (e.g., Overleaf, TeXShop, TeXworks).
+3. Open the `main.tex` file in your LaTeX editor and compile it to generate the PDF.

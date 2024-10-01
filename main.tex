@@ -1,0 +1,314 @@
+\documentclass[letterpaper,10pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%
+%% BEGIN_FILE: mteck.sty
+%% NOTE: Everything between here and END_FILE can
+%% be relocated to "mteck.sty" and then included with:
+%\usepackage{mteck}
+
+% Dependencies
+% NOTE: Some packages (lastpage, hyperref) require second build!
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{fontawesome5}
+\usepackage{multicol}
+\usepackage{bookmark}
+\usepackage{lastpage}
+
+% Sans-Serif
+%\usepackage[sfdefault]{FiraSans}
+%\usepackage[sfdefault]{roboto}
+%\usepackage[sfdefault]{noto-sans}
+%\usepackage[default]{sourcesanspro}
+
+% Serif
+\usepackage{CormorantGaramond}
+\usepackage{charter}
+
+% Colors
+% Use with \color{Name}
+% Can wrap entire heading with {\color{accent} [...] }
+\usepackage{xcolor}
+\definecolor{accentTitle}{HTML}{0e6e55}
+\definecolor{accentText}{HTML}{0e6e55}
+\definecolor{accentLine}{HTML}{000000}
+
+% Misc. Options
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\urlstyle{same}
+
+% Adjust Margins
+\addtolength{\oddsidemargin}{-0.7in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.19in}
+\addtolength{\topmargin}{-0.7in}
+\addtolength{\textheight}{1.4in}
+
+\setlength{\multicolsep}{-3.0pt}
+\setlength{\columnsep}{-1pt}
+\setlength{\tabcolsep}{0pt}
+\setlength{\footskip}{3.7pt}
+\raggedbottom
+\raggedright
+
+% ATS Readability
+\input{glyphtounicode}
+\pdfgentounicode=1
+
+%-----------------%
+% Custom Commands %
+%-----------------%
+
+% Centered title along with subtitle between HR
+% Usage: \documentTitle{Name}{Details}
+\newcommand{\documentTitle}[2]{
+  \begin{center}
+    {\Huge\color{accentTitle} #1}
+    \vspace{10pt}
+    {\color{accentLine} \hrule}
+    \vspace{2pt}
+    %{\footnotesize\color{accentTitle} #2}
+    \footnotesize{#2}
+    \vspace{2pt}
+    {\color{accentLine} \hrule}
+  \end{center}
+}
+
+% Create a footer with correct padding
+% Usage: \documentFooter{\thepage of X}
+\newcommand{\documentFooter}[1]{
+  \setlength{\footskip}{10.25pt}
+  \fancyfoot[C]{\footnotesize #1}
+}
+
+% Simple wrapper to set up page numbering
+% Usage: \numberedPages
+% WARNING: Must run pdflatex twice!
+\newcommand{\numberedPages}{
+  \documentFooter{\thepage/\pageref{LastPage}}
+}
+
+% Section heading with horizontal rule
+% Usage: \section{Title}
+\titleformat{\section}{
+  \vspace{-5pt}
+  \color{accentText}
+  \raggedright\large\bfseries
+}{}{0em}{}[\color{accentLine}\titlerule]
+
+% Section heading with separator and content on same line
+% Usage: \tinysection{Title}
+\newcommand{\tinysection}[1]{
+  \phantomsection
+  \addcontentsline{toc}{section}{#1}
+  {\large{\bfseries\color{accentText}#1} {\color{accentLine} |}}
+}
+
+% Indented line with arguments left/right aligned in document
+% Usage: \heading{Left}{Right}
+\newcommand{\heading}[2]{
+  \hspace{10pt}#1\hfill#2\\
+}
+
+% Adds \textbf to \heading
+\newcommand{\headingBf}[2]{
+  \heading{\textbf{#1}}{\textbf{#2}}
+}
+
+% Adds \textit to \heading
+\newcommand{\headingIt}[2]{
+  \heading{\textit{#1}}{\textit{#2}}
+}
+
+% Template for itemized lists
+% Usage: \begin{resume_list} [items] \end{resume_list}
+\newenvironment{resume_list}{
+  \vspace{-7pt}
+  \begin{itemize}[itemsep=-2px, parsep=1pt, leftmargin=30pt]
+}{
+  \end{itemize}
+  %\vspace{-2pt}
+}
+
+% Template for itemized lists
+\newenvironment{resume_list_bullet}{
+  \vspace{-7pt}
+  \begin{itemize}[itemsep=-1.5px, parsep=0pt, leftmargin=20pt]
+}{
+  \end{itemize}
+}
+
+
+% Formats an item to use as an itemized title
+% Usage: \itemTitle{Title}
+\newcommand{\itemTitle}[1]{
+  \item[] \underline{#1}\vspace{4pt}
+}
+
+% Bullets used in itemized lists
+\renewcommand\labelitemi{--}
+
+%% END_FILE: mteck.sty
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%===================%
+% John Doe's Resume %
+%===================%
+
+%\numberedPages % NOTE: lastpage requires a second build
+%\documentFooter{\thepage of 2} % Does similar without using lastpage
+\begin{document}
+
+  %---------%
+  % Heading %
+  %---------%
+
+  \documentTitle{Giorgos \textbf{Mytaros}}{
+    % Web Version
+    %\raisebox{-0.05\height} \faPhone\ [redacted - web copy] ~
+    %\raisebox{-0.15\height} \faEnvelope\ [redacted - web copy] ~
+    %%
+    \href{tel:+306983612017}{
+      \raisebox{-0.05\height} \faPhone\ +30 6983612017} ~ | ~
+    \href{mailto:gmitaros@gmail.com}{
+      \raisebox{-0.15\height} \faEnvelope\ gmitaros@gmail.com} ~ | ~
+    \href{https://www.linkedin.com/in/gmitaros/}{
+      \raisebox{-0.15\height} \faLinkedin\ linkedin.com/in/gmitaros} ~ | ~
+    \href{https://github.com/gmitaros}{
+      \raisebox{-0.15\height} \faGithub\ github.com/gmitaros}
+  }
+
+  %---------%
+  % Summary %
+  %---------%
+
+  % \tinysection{Summary}
+  % Experienced Mathematician and Data Scientist. Currently deploying my expertise as a Credit Risk Analyst with over 1.5 years of experience in the fintech industry. Specialized in modeling, data analysis, big data analytics, and risk optimization. Successfully manage risk for multiple projects that contribute to significant net revenue growth. Skilled in deriving actionable insights from complex datasets, decision-making, and solving business challenges through data. Possess a solid math foundation and an MSc in Data Science {\&} Engineering, combining technical skills with business acumen and a natural curiosity.
+
+  %--------%
+  % Skills %
+  %--------%
+
+  \section{Skills}
+
+  %\begin{multicols}{2}
+    \begin{itemize}[itemsep=-1.5px, parsep=0.5pt, leftmargin=90pt]
+     \item[\textbf{Languages}] Java, JavaScript, Python, SQL
+      \item[\textbf{Frameworks \& Libs}] Spring Boot, React, Redux, RabbitMQ, Kafka, Redis
+      \item[\textbf{Cloud \& DevOps}] Azure Functions, Azure Stream Analytics, Kubernetes, Docker, Jenkins, CI/CD
+      \item[\textbf{Databases}] MS SQL Server, Oracle DB, PostgreSQL, Database Design, SQL Queries
+      \item[\textbf{Methodologies}] Agile (Scrum), Test-Driven Development (TDD)
+      \item[\textbf{Tools}] Jira, Confluence, Git
+      \item[\textbf{Skills}] Backend Development, Frontend Development, RESTful APIs, Technical Documentation
+      \item[\textbf{Languages}] Greek (Native), English (Professional), Spanish (Beginner), German (B1)
+      \item[\textbf{Soft Skills}] Team player, Communication, Problem-Solving, Bias for action, Deliver results, Problem-Solving
+    \end{itemize}
+ % \end{multicols}
+
+  %------------%
+  % Experience %
+  %------------%
+
+  \section{Experience}
+ 
+  \headingBf{\Large Vertoyo | Outsourced to OPAP S.A}{Oct 2022 -- Present}
+  \headingIt{\large \textbf{Senior Software Engineer}}{Athens, Greece}
+  \begin{resume_list}
+
+  \item \textbf{Improved bonus mechanisms} in the Player Account Management platform by developing new features using Java, Spring Boot, and Oracle DB, enhancing player engagement and retention.
+  
+  \item \textbf{Migrated monolithic application to microservices architecture}, transitioning from Wildfly server to Spring Boot microservices, improving scalability and maintainability.
+  \item \textbf{Developed event processing service} with a team, leveraging RabbitMQ, Azure Functions, and Azure Event Hubs to unify event payloads and stream them for downstream processing.
+  
+  \item \textbf{Implemented real-time analytics} using Azure Stream Analytics to generate informational events (e.g., user inactivity after login, deposit behaviors), enabling targeted marketing campaigns and increasing user activity by 25\%.
+  
+  \item \textbf{Integrated with Salesforce and gamification platforms}, providing enriched event data to trigger personalized bonuses and gamification tasks, boosting customer engagement.
+  
+  \item \textbf{Processed high-volume betting data} (over 6 million bets per day) with Kafka to calculate real-time gross gaming revenue per player, enhancing financial reporting accuracy.
+  
+  \item \textbf{Conducted proof of concept (POC) on Quarkus}, exploring performance improvements for Java applications.
+  
+  \item \textbf{Implemented new features on communication services} for campaigns, handling push notifications, SMS, and Viber messages to over 200,000 customers, increasing campaign effectiveness.
+  
+  \item \textbf{Orchestrated platform scalability with Kubernetes} and integrated Azure services for robust back-end solutions, achieving 99.9\% uptime.
+\end{resume_list}
+
+\headingBf{\Large Accenture Greece | Omni-Channel platform for major Bank}{Oct 2019 -- Sep 2022}
+ % Application Development Senior Analyst
+\headingIt{\large \textbf{Application Development Senior Analyst}}{Jul 2022 -- Sep 2022}
+\begin{resume_list}
+    \item Granted access to production databases to provide production support, resolving issues promptly.
+    \item Led the development of the digitalization of the stocks and bonds purchasing process through web banking, increasing online investment transactions.
+    \item Collaborated with business analysts, QAs, and cross-functional teams to deliver high-quality software solutions on time.
+    \item Optimized database performance by writing SQL scripts, creating tables, and indexing in MS SQL Server, improving
+application responsiveness by 35%.
+\end{resume_list}
+
+% Application Development Analyst
+\headingIt{\large \textbf{Application Development Analyst}}{Jul 2021 -- Jul 2022}
+\begin{resume_list}
+    \item Maintained automated regression tests and Jenkins pipelines, enabling continuous integration and reducing deployment times by 50\%.
+    \item Provided technical estimations for new projects and mentored junior developers in software patterns, Kubernetes, and microservices.
+    \item Developed a multi-business account management system, allowing seamless access to company accounts.
+\end{resume_list}
+
+ \headingIt{\large \textbf{Application Development Associate}}{Oct 2019 -- Jul 2021}
+\begin{resume_list}
+    \item Developed full-stack features for omni-channel platform using Java, Spring Boot, RabbitMQ and React, enhancing customer engagement across the banking platform.
+    \item Wrote backend APIs for user services, including fetching loyalty points and categorizing spending data for clients.
+    \item Collaborated with cross-functional teams in an Agile environment to deliver scalable solutions for the banking platform.
+\end{resume_list}
+
+
+  % \headingBf{Auto Betting Software Project}{Oct 2018 -- Sep 2019}
+  % \headingIt{Software Developer, Greece}{}
+  % \begin{resume_list}
+  %   \item Developed an automated betting application to streamline online bet placements, reducing manual workload and making it more efficient and less error-prone.
+  %   \item Implemented dynamic web automation using Selenium WebDriver, enabling precise and timely bet execution across multiple online betting platforms.
+  %   \item Integrated Telegram API to receive notifications for betting suggestions, enhancing user engagement.
+  %   \item Increased operational efficiency by automating repetitive tasks, allowing users to handle higher volumes of bets effectively.
+  %   \item Enhanced accuracy and speed of bet placements, leading to better betting outcomes and user satisfaction.
+  % \end{resume_list}
+
+
+  %-----------%
+  % Education %
+  %-----------%
+
+  \section{Education}
+
+  \headingBf{\href{https://www.cse.uoi.gr/?lang=en}{\large{Computer Science \& Engineering | University of Ioannina}}}{2012 -- 2018}
+  \headingIt{Diploma of Engineering in Computer Science \& Engineering (Integrated Master's Degree)}{}
+  \begin{resume_list_bullet}
+  \item{Completed a thesis project titled "BFT Algorithms Using Secure Hardware (Intel SGX) and Its Applications in Blockchains," demonstrating practical application of theoretical knowledge.}{}
+  \end{resume_list_bullet}
+
+
+  %----------------------------%
+  % Extracurricular Activities %
+  %----------------------------%
+
+ % \section{Interests}
+ % {
+ %   
+ %   {
+ %     \raisebox{-0.05\height} \ \ Travelling} ~ | ~
+ %   {
+ %     \raisebox{-0.15\height} \ \ Photography} ~ | %~
+ %   {
+ %     \raisebox{-0.15\height} \ \ Self improvement %} 
+
+    
+ % }
+
+
+  
+
+\end{document}
